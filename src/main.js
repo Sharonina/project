@@ -3,24 +3,37 @@ import * as THREE from "three";
 // Scene
 const scene = new THREE.Scene();
 
-// Object
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: "#be8ee3" });
-const mesh = new THREE.Mesh(geometry, material);
-/* mesh.position.x = 1.7;
-mesh.position.y = -0.6;
-mesh.position.z = 1; */
-mesh.position.set(1.7, -0.6, 1);
+//object
+const group = new THREE.Group();
+group.position.y = 1;
+group.scale.y = 3;
+group.rotation.y = 1;
+scene.add(group);
 
-//scale (v3)
-mesh.scale.set(2, 0.5, 0.5);
+const cube1 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: "#f3679b" })
+);
 
-//rotation (Euler)
-mesh.rotation.reorder("YXZ");
-mesh.rotation.y = 0.5;
-mesh.rotation.x = 0.5;
+group.add(cube1);
 
-scene.add(mesh);
+const cube2 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: "#f7891b" })
+);
+
+cube2.position.x = 2;
+
+group.add(cube2);
+
+const cube3 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: "#17919d" })
+);
+
+cube3.position.x = -2;
+
+group.add(cube3);
 
 // Guides 3D
 const AxesHelper = new THREE.AxesHelper();
@@ -41,11 +54,6 @@ camera.position.z = 5;
 /* camera.position.y = 1;
 camera.position.x = 1; */
 scene.add(camera);
-
-camera.lookAt(mesh.position);
-
-// Get distance of the object from the camera
-console.log(mesh.position.distanceTo(camera.position));
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
