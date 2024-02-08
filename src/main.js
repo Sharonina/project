@@ -3,11 +3,44 @@ import * as THREE from "three";
 // Scene
 const scene = new THREE.Scene();
 
-// Object
-const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: "#be8ee3" });
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
+//object
+const group = new THREE.Group();
+group.position.y = 1;
+group.scale.y = 3;
+group.rotation.y = 1;
+scene.add(group);
+
+const cube1 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: "#f3679b" })
+);
+
+group.add(cube1);
+
+const cube2 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: "#f7891b" })
+);
+
+cube2.position.x = 2;
+
+group.add(cube2);
+
+const cube3 = new THREE.Mesh(
+  new THREE.BoxGeometry(1, 1, 1),
+  new THREE.MeshBasicMaterial({ color: "#17919d" })
+);
+
+cube3.position.x = -2;
+
+group.add(cube3);
+
+// Guides 3D
+const AxesHelper = new THREE.AxesHelper();
+scene.add(AxesHelper);
+
+//take the vector to 1 (you can use it to see further objects)
+//mesh.position.normalize();
 
 // Sizes
 const sizes = {
