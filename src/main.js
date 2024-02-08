@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import gsap from "gsap";
 
 // Scene
 const scene = new THREE.Scene();
@@ -66,15 +67,19 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 
-let time = Date.now();
+//Clock
+const clock = new THREE.Clock();
+
 //Animation
+gsap.to(group.position, { duration: 1, delay: 1, y: -2 });
+gsap.to(group.position, { duration: 1, delay: 2, y: 0 });
+
 const tick = () => {
-  const currentTime = Date.now();
-  const deltaTime = currentTime - time;
-  time = currentTime;
+  /*  const elapsedTime = clock.getElapsedTime();
 
-  group.rotation.y += 0.001 * deltaTime;
-
+  group.rotation.y = Math.sin(elapsedTime);
+  group.position.y = Math.sin(elapsedTime);
+ */
   renderer.render(scene, camera);
 
   window.requestAnimationFrame(tick);
